@@ -6,7 +6,7 @@
 /*   By: mleonet <mleonet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 14:40:08 by mleonet           #+#    #+#             */
-/*   Updated: 2023/06/12 17:01:58 by mleonet          ###   ########.fr       */
+/*   Updated: 2023/06/13 16:45:02 by mleonet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,7 @@ char	*add_to_stash(char *stash, char *buf)
 	lenj = ft_strlen(buf);
 	str = malloc(sizeof(char) * (leni + lenj + 1));
 	if (!str)
-	{
 		return (0);
-	}
 	while (++i < leni)
 		str[i] = stash[i];
 	while (++j < lenj)

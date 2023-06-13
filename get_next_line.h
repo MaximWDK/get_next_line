@@ -6,7 +6,7 @@
 /*   By: mleonet <mleonet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 14:40:14 by mleonet           #+#    #+#             */
-/*   Updated: 2023/06/12 17:00:36 by mleonet          ###   ########.fr       */
+/*   Updated: 2023/06/13 16:45:05 by mleonet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,5 @@ char	*read_and_insert_stash(int fd, char *stash);
 int		is_newline(char *str);
 char	*add_to_stash(char *stash, char *buf);
 size_t	ft_strlen(char *str);
-void	extract_line(char *stash, char *line);
 
 #endif
