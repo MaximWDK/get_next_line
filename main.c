@@ -6,7 +6,7 @@
 /*   By: mleonet <mleonet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 17:33:00 by mleonet           #+#    #+#             */
-/*   Updated: 2023/06/08 17:57:05 by mleonet          ###   ########.fr       */
+/*   Updated: 2023/06/16 17:21:53 by mleonet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,12 @@ int	main(void)
 
 	i = -1;
 	fd = open("test.txt", O_RDONLY);
-	while (++i < 10)
+	while (1)
 	{
 		str = get_next_line(fd);
+		if (!str)
+			break ;
 		printf("%s", str);
-		free(str);
 	}
 	close(fd);
 }
