@@ -6,7 +6,7 @@
 /*   By: mleonet <mleonet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 14:40:08 by mleonet           #+#    #+#             */
-/*   Updated: 2023/06/13 16:45:02 by mleonet          ###   ########.fr       */
+/*   Updated: 2023/06/19 18:50:23 by mleonet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,19 @@ char	*get_next_line(int fd)
 {
 	static char	*stash;
 
-	stash = NULL;
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, stash, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
+	if (!stash)
+	{
+		stash = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+		if (!stash)
+			return (0);
+		*stash = '\0';
+	}
 	stash = read_and_insert_stash(fd, stash);
 	if (!stash)
 		return (0);
-	return (stash);
+	return (extract_line(&stash));
 }
 
 char	*read_and_insert_stash(int fd, char *stash)
@@ -35,11 +41,15 @@ char	*read_and_insert_stash(int fd, char *stash)
 	{
 		buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 		if (!buf)
+		{
+			free(stash);
 			return (0);
+		}
 		readed = read(fd, buf, BUFFER_SIZE);
-		if ((!stash && readed == 0) || readed == -1)
+		if (readed == -1)
 		{
 			free(buf);
+			free(stash);
 			return (0);
 		}
 		buf[readed] = '\0';
@@ -47,22 +57,6 @@ char	*read_and_insert_stash(int fd, char *stash)
 		free(buf);
 	}
 	return (stash);
-}
-
-int	is_newline(char *str)
-{
-	int	i;
-
-	i = 0;
-	if (!str)
-		return (0);
-	while (str[i])
-	{
-		if (str[i] == '\n')
-			return (1);
-		i++;
-	}
-	return (0);
 }
 
 char	*add_to_stash(char *stash, char *buf)
@@ -79,7 +73,10 @@ char	*add_to_stash(char *stash, char *buf)
 	lenj = ft_strlen(buf);
 	str = malloc(sizeof(char) * (leni + lenj + 1));
 	if (!str)
+	{
+		free(stash);
 		return (0);
+	}
 	while (++i < leni)
 		str[i] = stash[i];
 	while (++j < lenj)
@@ -87,4 +84,33 @@ char	*add_to_stash(char *stash, char *buf)
 	str[i + j] = '\0';
 	free(stash);
 	return (str);
+}
+
+char	*extract_line(char **stash)
+{
+	int		i;
+	char	*line;
+	char	*remainder;
+
+	i = 0;
+	while ((*stash)[i] && (*stash)[i] != '\n')
+		i++;
+	if ((*stash)[i] == '\n')
+	{
+		line = get_the_line(*stash, i);
+		remainder = get_remainder(*stash, i);
+		free(*stash);
+		*stash = remainder;
+		return (line);
+	}
+	if (i > 0)
+	{
+		line = get_the_line(*stash, i);
+		free(*stash);
+		*stash = NULL;
+		return (line);
+	}
+	free(*stash);
+	*stash = NULL;
+	return (NULL);
 }

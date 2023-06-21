@@ -6,7 +6,7 @@
 /*   By: mleonet <mleonet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 17:33:00 by mleonet           #+#    #+#             */
-/*   Updated: 2023/06/16 17:21:53 by mleonet          ###   ########.fr       */
+/*   Updated: 2023/06/17 14:48:57 by mleonet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@
 int	main(void)
 {
 	int		fd;
-	int		i;
 	char	*str;
 
-	i = -1;
 	fd = open("test.txt", O_RDONLY);
 	while (1)
 	{
