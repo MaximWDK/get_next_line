@@ -6,7 +6,7 @@
 /*   By: mleonet <mleonet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 14:40:12 by mleonet           #+#    #+#             */
-/*   Updated: 2023/06/19 18:51:52 by mleonet          ###   ########.fr       */
+/*   Updated: 2023/07/21 16:23:28 by mleonet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,14 @@ int	is_newline(char *str)
 	return (0);
 }
 
-char	*get_the_line(char *stash, int line_length)
+char	*get_the_line(char *stash, int line_length, int add)
 {
 	char	*line;
 
-	line = malloc(sizeof(char) * (line_length + 2));
+	line = malloc(sizeof(char) * (line_length + 1 + add));
 	if (!line)
 		return (NULL);
-	ft_strlcpy(line, stash, line_length + 2);
+	ft_strlcpy(line, stash, line_length + 1 + add);
 	return (line);
 }
 

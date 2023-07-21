@@ -6,7 +6,7 @@
 /*   By: mleonet <mleonet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 14:40:08 by mleonet           #+#    #+#             */
-/*   Updated: 2023/06/19 18:50:23 by mleonet          ###   ########.fr       */
+/*   Updated: 2023/07/21 16:47:42 by mleonet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,21 +91,32 @@ char	*extract_line(char **stash)
 	int		i;
 	char	*line;
 	char	*remainder;
+	int		add;
 
+	add = 1;
 	i = 0;
 	while ((*stash)[i] && (*stash)[i] != '\n')
 		i++;
 	if ((*stash)[i] == '\n')
 	{
-		line = get_the_line(*stash, i);
+		line = get_the_line(*stash, i, add);
 		remainder = get_remainder(*stash, i);
 		free(*stash);
+		if (!remainder || !line)
+		{
+			free(line);
+			free(remainder);
+			*stash = NULL;
+			return (NULL);
+		}
 		*stash = remainder;
 		return (line);
 	}
 	if (i > 0)
 	{
-		line = get_the_line(*stash, i);
+		if (!(*stash)[i])
+			i--;
+		line = get_the_line(*stash, i, add);
 		free(*stash);
 		*stash = NULL;
 		return (line);
