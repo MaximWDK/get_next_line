@@ -6,7 +6,7 @@
 /*   By: mleonet <mleonet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 14:40:08 by mleonet           #+#    #+#             */
-/*   Updated: 2023/07/21 17:56:42 by mleonet          ###   ########.fr       */
+/*   Updated: 2023/07/22 01:35:02 by mleonet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,9 +115,7 @@ char	*extract_line(char **stash)
 	while ((*stash)[i] && (*stash)[i] != '\n')
 		i++;
 	if ((*stash)[i] == '\n')
-	{
 		return (extract_line_utils(stash, i, add));
-	}
 	if (i > 0)
 	{
 		if (!(*stash)[i])
