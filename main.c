@@ -6,7 +6,7 @@
 /*   By: mleonet <mleonet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 17:33:00 by mleonet           #+#    #+#             */
-/*   Updated: 2023/06/17 14:48:57 by mleonet          ###   ########.fr       */
+/*   Updated: 2023/07/22 01:20:54 by mleonet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	main(void)
 		if (!str)
 			break ;
 		printf("%s", str);
+		free(str);
 	}
 	close(fd);
 }
