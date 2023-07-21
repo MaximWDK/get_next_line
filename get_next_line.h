@@ -6,7 +6,7 @@
 /*   By: mleonet <mleonet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 14:40:14 by mleonet           #+#    #+#             */
-/*   Updated: 2023/07/21 16:47:51 by mleonet          ###   ########.fr       */
+/*   Updated: 2023/07/21 17:56:20 by mleonet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ size_t	ft_strlcpy(char *dst, char *src, size_t dstsize);
 char	*extract_line(char **stash);
 char	*get_the_line(char *stash, int line_length, int add);
 char	*get_remainder(char *stash, int line_length);
+char	*extract_line_utils(char **stash, int index, int add);
 
 #endif

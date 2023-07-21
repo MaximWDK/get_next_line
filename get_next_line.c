@@ -6,7 +6,7 @@
 /*   By: mleonet <mleonet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 14:40:08 by mleonet           #+#    #+#             */
-/*   Updated: 2023/07/21 16:47:42 by mleonet          ###   ########.fr       */
+/*   Updated: 2023/07/21 17:56:42 by mleonet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,28 @@ char	*add_to_stash(char *stash, char *buf)
 	return (str);
 }
 
+char	*extract_line_utils(char **stash, int index, int add)
+{
+	char	*line;
+	char	*remainder;
+
+	remainder = get_remainder(*stash, index);
+	line = get_the_line(*stash, index, add);
+	free(*stash);
+	if (!remainder || !line)
+	{
+		free(line);
+		free(remainder);
+		*stash = NULL;
+		return (NULL);
+	}
+	*stash = remainder;
+	return (line);
+}
+
 char	*extract_line(char **stash)
 {
 	int		i;
-	char	*line;
-	char	*remainder;
 	int		add;
 
 	add = 1;
@@ -99,27 +116,13 @@ char	*extract_line(char **stash)
 		i++;
 	if ((*stash)[i] == '\n')
 	{
-		line = get_the_line(*stash, i, add);
-		remainder = get_remainder(*stash, i);
-		free(*stash);
-		if (!remainder || !line)
-		{
-			free(line);
-			free(remainder);
-			*stash = NULL;
-			return (NULL);
-		}
-		*stash = remainder;
-		return (line);
+		return (extract_line_utils(stash, i, add));
 	}
 	if (i > 0)
 	{
 		if (!(*stash)[i])
 			i--;
-		line = get_the_line(*stash, i, add);
-		free(*stash);
-		*stash = NULL;
-		return (line);
+		return (extract_line_utils(stash, i, add));
 	}
 	free(*stash);
 	*stash = NULL;
