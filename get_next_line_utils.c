@@ -6,7 +6,7 @@
 /*   By: mleonet <mleonet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 14:40:12 by mleonet           #+#    #+#             */
-/*   Updated: 2023/07/21 16:23:28 by mleonet          ###   ########.fr       */
+/*   Updated: 2023/07/25 17:22:13 by mleonet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ size_t	ft_strlcpy(char *dst, char *src, size_t dstsize)
 	size_t			size;
 
 	i = -1;
+	if (!src || !dst)
+		return (0);
 	if (dstsize != 0)
 	{
 		while (src[++i] != '\0' && i < (dstsize - 1))
