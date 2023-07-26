@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mleonet <mleonet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 17:33:00 by mleonet           #+#    #+#             */
-/*   Updated: 2023/07/26 00:32:07 by mleonet          ###   ########.fr       */
+/*   Updated: 2023/07/26 13:51:41 by mleonet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 #include <fcntl.h>
 #include <stdio.h>
 
@@ -23,7 +23,7 @@ int	main(void)
 	int		i;
 
 	i = -1;
-	fd = open("test.txt", O_RDONLY);
+	fd = open("test_bonus.txt", O_RDONLY);
 	fd2 = 1;
 	while (++i < 5)
 	{
