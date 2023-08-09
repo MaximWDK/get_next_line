@@ -14,7 +14,7 @@
 
 char	*get_next_line(int fd)
 {
-	static char	*stash[OPEN_MAX];
+	static char	*stash[FOPEN_MAX];
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
